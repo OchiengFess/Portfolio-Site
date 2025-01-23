@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Ochieng Festus - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --white: #ffffff;
             --primary-blue: #2196F3;
             --dark-blue: #003366;
-            --accent-blue: #BBDEFB;
-            --text-color: #333333;
+            --overlay-color: rgba(1, 1, 19, 0.3);
+            --text-color: #ffffff;
         }
 
         body {
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--white);
+            font-family: 'Poppins', sans-serif;
             color: var(--text-color);
-            overflow-x: hidden;
+            background: url('images/bg2.png') no-repeat center center/cover;
+            position: relative;
+            height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--overlay-color);
+            z-index: 1;
         }
 
         header {
@@ -29,129 +42,114 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 2;
         }
 
         header h1 {
             margin: 0;
+            font-size: 1.8rem;
         }
 
         nav a {
-            color: var(--light-blue);
+            color: var(--white);
             text-decoration: none;
             margin-left: 1rem;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--accent-blue);
+            color: var(--primary-blue);
         }
 
         .content {
-            padding: 2rem;
-            animation: fade-in 0.5s ease-in-out;
-        }
-
-        iframe {
-            width: 100%;
-            height: 70vh;
-            border: none;
-        }
-
-        footer {
-            background-color: var(--dark-blue);
-            color: var(--white);
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            padding: 3rem 1rem;
         }
 
-        .hidden {
-            display: none;
+        .content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
 
         .social-links a {
             color: var(--primary-blue);
-            margin: 0 0.5rem;
             font-size: 1.5rem;
-            transition: color 0.3s;
-            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--dark-blue);
+            color: var(--white);
+            transform: scale(1.2);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--dark-blue);
+            color: var(--white);
         }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <h1>Ochieng Festus</h1>
+        <h1>Ochieng Fess</h1>
         <nav>
-            <a href="index.html" onclick="showSection('home')">Home</a>
-            <a href="resume.html" onclick="showSection('resume')">Resume</a>
-            <a href="portfolio.html" onclick="showSection('portfolio')">Portfolio</a>
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="portfolio.html">Portfolio</a>
         </nav>
     </header>
 
     <div class="content">
-        <section id="home">
-            <h2>Welcome to My Portfolio</h2>
-            <p>Explore my projects and learn more about my skills and experiences. Choose an option from the navigation bar to get started.</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-        </section>
-
-        <section id="resume" class="hidden">
-            <h2>Resume</h2>
-            <iframe src="resume.html"></iframe>
-        </section>
-
-        <section id="portfolio" class="hidden">
-            <h2>Portfolio</h2>
-            <iframe src="portfolio.html"></iframe>
-        </section>
+        <h2>Welcome to My Portfolio</h2>
+        <p>Explore my projects and learn more about my skills and experiences.</p>
+        <button class="btn" onclick="location.href='portfolio.html'">Explore Portfolio</button>
+        <div class="social-links">
+            <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Ochieng Festus. All rights reserved.</p>
+        <p>&copy; 2025 Ochieng Festus. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll(".content section");
-            sections.forEach(section => {
-                section.classList.add("hidden");
-            });
-
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.remove("hidden");
-            }
-        }
-
-        // Default to showing the home section
-        showSection('home');
-    </script>
 </body>
 </html>
