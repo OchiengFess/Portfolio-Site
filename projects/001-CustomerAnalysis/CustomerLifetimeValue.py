@@ -147,3 +147,8 @@ with tab4:
         yaxis=dict(showgrid=False)
     )
     st.plotly_chart(fig4, use_container_width=True)
+
+# Footer
+st.markdown("---")
+st.markdown("Data Scientist/Data Analyst: Ochieng Festus")
+st.markdown("*Powered by ©️ Swift Traq* | 2025")
