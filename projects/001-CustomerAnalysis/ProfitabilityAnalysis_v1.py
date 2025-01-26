@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 # Page Configurations
 st.set_page_config(page_title="Profitability Analysis Dashboard", layout="wide", page_icon="📊")
@@ -30,15 +31,21 @@ def apply_custom_styles():
 
     apply_custom_styles()
 
+# Get base directory
+base_dir = os.path.dirname(__file__)
+
+# Build path to data folder
+data_folder = os.path.join(base_dir, "data")
+
 # Load data
 @st.cache_data
 def load_data(file_path, chunk_size=1000):
-    df_customer = pd.concat(pd.read_csv(file_path+'\Clean_DimCustomer.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
-    df_sales = pd.concat(pd.read_csv(file_path+'\Clean_FactInternetSales.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
-    df_dimProduct = pd.concat(pd.read_csv(file_path+'\Clean_DimProduct.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
-    df_dimProductSubcategory = pd.concat(pd.read_csv(file_path+'\Clean_DimProductsSubcategory.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
-    df_date = pd.concat(pd.read_csv(file_path+'\Clean_DimDate.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
-    df_geography = pd.concat(pd.read_csv(file_path+'\DimGeography.csv', chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_customer = pd.concat(pd.read_csv(os.path.join(data_folder, "Clean_DimCustomer.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_sales = pd.concat(pd.read_csv(os.path.join(data_folder, "Clean_FactInternetSales.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_dimProduct = pd.concat(pd.read_csv(os.path.join(data_folder, "Clean_DimProduct.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_dimProductSubcategory = pd.concat(pd.read_csv(os.path.join(data_folder, "Clean_DimProductsSubcategory.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_date = pd.concat(pd.read_csv(os.path.join(data_folder, "Clean_DimDate.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
+    df_geography = pd.concat(pd.read_csv(os.path.join(data_folder, "DimGeography.csv"), chunksize=chunk_size, delimiter="\t"), ignore_index=True)
 
     df_sales['OrderDate'] = pd.to_datetime(df_sales['OrderDate'])
     df_date['FullDateAlternateKey'] = pd.to_datetime(df_date['FullDateAlternateKey'])
