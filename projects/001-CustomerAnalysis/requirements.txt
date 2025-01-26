@@ -1,5 +1,5 @@
 # Base Python compatibility
-python_version >= 3.9, <3.12
+#python_version >= 3.9, <3.12
 
 # Core dependencies
 absl-py>=2.1.0,<3.0
