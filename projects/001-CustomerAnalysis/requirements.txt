@@ -26,7 +26,7 @@ kiwisolver==1.4.8
 Markdown==3.7
 matplotlib==3.10.0
 ml-dtypes==0.4.1
-numpy==1.24.0  # Compatible with TensorFlow 2.13.0
+numpy==1.26.0  # Compatible with TensorFlow 2.13.0
 packaging==24.2
 pandas==2.2.3
 pillow==11.1.0
