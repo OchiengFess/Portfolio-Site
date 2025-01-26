@@ -27,9 +27,7 @@ Markdown>=3.7,<4.0
 opt_einsum>=3.4.0,<4.0
 protobuf>=5.29.3,<6.0
 tensorflow>=2.18.0,<2.19.0
-tensorflow_intel>=2.18.0,<2.19.0
 tensorboard>=2.18.0,<2.19.0
-tensorboard-data-server>=0.7.2,<1.0
 termcolor>=2.5.0,<3.0
 wrapt>=1.17.2,<2.0
 
