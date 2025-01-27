@@ -39,9 +39,18 @@
             text-align: center;
             z-index: 2;
             position: relative;
+
         }
 
         header h1 {
+            margin: 0;
+        }
+        header h3 {
+            /*display: flex; */
+            text-align: right;
+            justify-content: space-between;
+            align-items: right;
+            width: 100%; 
             margin: 0;
         }
 
@@ -133,7 +142,7 @@
             width: 100%;
             max-width: 200px; /* Adjust as necessary */
             margin: 0 auto;
-            background-color: var(--dark-blue);
+            /*background-color: var(--dark-blue); */
         }
         .responsive-icon {
             max-width: 100%;
@@ -141,26 +150,20 @@
             display: block;
             margin: auto;
         }
-        .icon-container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            border: 3px solid var(--primary-blue);
-        }
 
     </style>
 </head>
 <body>
     <header>
         <h1>My Projects</h1>
+        <h3><div class='buttons'><a href="index.html" >Home</a></div></h3>
     </header>
     <main>
         <div class="project-container">
             <!-- Profitability Analysis -->
             <div class="project">
                 <div class="icon-container">
-                <img src="/projects/001-CustomerAnalysis/images/prof.png" alt="Profitability Analysis" class="responsive-icon">
+                <img src="/projects/001-CustomerAnalysis/images/profitability.jpeg" alt="Profitability Analysis" class="responsive-icon">
                 </div>
                 <h2>Profitability Analysis</h2>
                 <p>Designed to track and evaluate revenue, profitability metrics across business dimensions</p>
@@ -182,7 +185,7 @@
             <!-- CLV Analysis -->
             <div class="project">
                 <div class="icon-container">
-                <img src="/projects/001-CustomerAnalysis/images/clv.png" alt="customer lifetime value" class="responsive-icon">
+                <img src="/projects/001-CustomerAnalysis/images/customer_lifetime_value.jpeg" alt="customer lifetime value" class="responsive-icon">
                 </div>
                 <h2>Customer Lifetime Value</h2>
                 <p>Dashboard analyzing customer lifetime value (CLV), enabling data-driven decisions to enhance customer retention and revenue growth.</p>
@@ -202,7 +205,7 @@
             <!-- customer segmentation -->
             <div class="project">
                 <div class="icon-container">
-                <img src="/projects/002-CustomerSegmentation/images/seg.png" alt="customer segmentation" class="responsive-icon">
+                <img src="/projects/002-CustomerSegmentation/images/segmentation.jpeg" alt="customer segmentation" class="responsive-icon">
                 </div>
                 <h2>Customer Segmentation</h2>
                 <p>advanced clustering-based dashboard for segmenting customers into actionable groups based on purchasing patterns and lifetime value.</p>

@@ -192,6 +192,32 @@
             transform: scale(1.1);
             background: var(--dark-blue);
         }
+        .buttons a {
+            
+            display: inline-block;
+            text-decoration: none;
+            color: var(--white);
+            background-color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background-color: var(--dark-blue);
+        }
+        header h3 {
+            /*display: flex; */
+            text-align: right;
+            justify-content: space-between;
+            align-items: right;
+            width: 100%; 
+            margin: 0;
+        }
+        .button-container {
+        display: flex;
+        justify-content: flex-end; /* Aligns content to the right */
+        }
     </style>
 </head>
 <body>
@@ -227,6 +253,9 @@
         <div class="header">
             <h1>Resume</h1>
             <p>Explore my career and achievements</p>
+            <div class="button-container">
+            <div class='buttons'><a href="index.html" >Home</a></div>
+            </div>
         </div>
 
         <div class="section">
