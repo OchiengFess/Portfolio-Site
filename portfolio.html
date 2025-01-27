@@ -125,6 +125,21 @@
         .buttons a:hover {
             background-color: var(--dark-blue);
         }
+        .responsive-icon {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 200px; /* Adjust as necessary */
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 <body>
@@ -135,7 +150,9 @@
         <div class="project-container">
             <!-- Profitability Analysis -->
             <div class="project">
-                <img src="" alt="Profitability Analysis">
+                <div class="icon-container">
+                <img src="/projects/001-CustomerAnalysis/images/profitability_icon.png" alt="Profitability Analysis" class="responsive-icon">
+                </div>
                 <h2>Profitability Analysis</h2>
                 <p>Designed to track and evaluate revenue, profitability metrics across business dimensions</p>
                 <div class="tags">
@@ -155,7 +172,9 @@
             </div>
             <!-- CLV Analysis -->
             <div class="project">
-                <img src="" alt="customer lifetime value">
+                <div class="icon-container">
+                <img src="/projects/001-CustomerAnalysis/images/clv_icon.png" alt="customer lifetime value" class="responsive-icon">
+                </div>
                 <h2>Customer Lifetime Value</h2>
                 <p>Dashboard analyzing customer lifetime value (CLV), enabling data-driven decisions to enhance customer retention and revenue growth.</p>
                 <div class="tags">
@@ -173,7 +192,9 @@
             </div>
             <!-- customer segmentation -->
             <div class="project">
-                <img src="" alt="customer segmentation">
+                <div class="icon-container">
+                <img src="/projects/002-CustomerSegmentation/images/segmentation_icon.png" alt="customer segmentation" class="responsive-icon">
+                </div>
                 <h2>Customer Segmentation</h2>
                 <p>advanced clustering-based dashboard for segmenting customers into actionable groups based on purchasing patterns and lifetime value.</p>
                 <div class="tags">

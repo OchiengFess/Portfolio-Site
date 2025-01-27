@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Festus Ochieng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Data Visualization -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #003366;
+            --white: #ffffff;
+            --gray: #f4f4f9;
+            --overlay-color: rgba(255, 255, 255, 0.8);
+            --gradient-bg: linear-gradient(135deg, #4A90E2, #003366);
+        }
+
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: var(--gradient-bg);
+            color: var(--dark-blue);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 25%;
+            background: linear-gradient(135deg, #2C2C2C, #1A1A1A);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: fixed;
+            height: 100%;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 3px solid var(--primary-blue);
+        }
+
+        .sidebar .skills, .sidebar .contact {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: var(--primary-blue);
+            margin-top: 5px;
+        }
+
+        .skills .skill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.3rem;
+        }
+
+        .contact a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            color: var(--white);
+        }
+
+        /* Main Content Styling */
+        .main {
+            margin-left: 25%;
+            padding: 2rem;
+            width: 75%;
+            background: var(--overlay-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 16px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top:hover {
+            background: var(--dark-blue);
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: var(--primary-blue);
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .timeline .event {
+            margin-bottom: 20px;
+        }
+
+        .timeline .event h3 {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile.jpg" alt="Profile">
+            <h1>Festus Ochieng</h1>
+        </div>
+        <div class="skills">
+            <h2>Skills</h2>
+            <div>
+                <span class="skill">Data Visualization</span>
+                <span class="skill">SQL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">
+            <h1>Resume</h1>
+        </div>
+
+        <div class="section">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="event">
+                    <h3>2024 - Present</h3>
+                    <p>Swift Traq</p>
+                </div>
+                <div class="event">
+                    <h3>2023 - Present</h3>
+                    <p>Luminix Data</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Sections -->
+    </div>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="progress-bar"></div>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+        });
+
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
