@@ -106,7 +106,7 @@ with tab2:
     fig = px.line(monthly_data,
                   y=['Revenue', 'Profit'],
                   title="Monthly Revenue and Profit Trends",
-                  labels={'value': 'Amount', 'variable': 'Metric'},
+                  labels={'value': 'Amount', 'variable': 'Metric', 'index': 'Months'},
                   template='plotly_dark')
     fig.update_traces(mode="lines+markers")
     st.plotly_chart(fig, use_container_width=True)
