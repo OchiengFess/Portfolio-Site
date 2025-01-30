@@ -1,5 +1,3 @@
-ProductCategoryKey	ProductCategoryAlternateKey	EnglishProductCategoryName	SpanishProductCategoryName	FrenchProductCategoryName
-1	1	Bikes	Bicicleta	Vélo
-2	2	Components	Componente	Composant
-3	3	Clothing	Prenda	Vêtements
-4	4	Accessories	Accesorio	Accessoire
+version https://git-lfs.github.com/spec/v1
+oid sha256:456b4cd16d9553f593dd602e4c88cfb58e6b1b39395cf5f5781df522e1c7b5bc
+size 260
