@@ -81,6 +81,7 @@ with tabs[1]:
 # Batch Prediction
 with tabs[2]:
     st.subheader("📂 Batch Prediction")
+    st.info("upload your csv(check sample below)")
     if uploaded_file is not None:
         df_batch = pd.read_csv(uploaded_file)
     else:
