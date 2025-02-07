@@ -39,19 +39,28 @@
             text-align: center;
             z-index: 2;
             position: relative;
-
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
             margin: 0;
         }
-        header h3 {
-            /*display: flex; */
-            text-align: right;
-            justify-content: space-between;
-            align-items: right;
-            width: 100%; 
-            margin: 0;
+
+        .home-button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
         }
 
         .project-container {
@@ -134,55 +143,33 @@
         .buttons a:hover {
             background-color: var(--dark-blue);
         }
-
-        .icon-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200;
-            width: 200%;
-            max-width: 300px; /* Adjust as necessary */
-            margin: 0 auto;
-            /*background-color: var(--dark-blue); */
-        }
-        .responsive-icon {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: auto;
-        } 
-
     </style>
 </head>
 <body>
     <header>
         <h1>My Projects</h1>
-        <h3><div class='buttons'><a href="index.html" >Home</a></div></h3>
+        <a href="index.html" class="home-button">Home</a>
     </header>
     <main>
         <div class="project-container">
             <!-- Profitability Analysis -->
             <div class="project">
-                <div class="icon-container">
-                <img src="images/profitability.jpeg" alt="Profitability Analysis" class="responsive-icon">
-                </div>
+                <img src="images/profitability.jpeg" alt="Profitability Analysis">
                 <h2>Profitability Analysis</h2>
-                <p>Designed to track and evaluate revenue, profitability metrics across business dimensions</p>
+                <p>Designed to track and evaluate revenue, profitability metrics across business dimensions.</p>
                 <div class="tags">
                     <span class="tag">SQL</span>
                     <span class="tag">Power BI</span>
                     <span class="tag">Python</span>
-                    <span class="tag">streamlit</span>
+                    <span class="tag">Streamlit</span>
                 </div>
-                <div class="buttons">
-                    <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/001-CustomerAnalysis" target="_blank">View on GitHub</a>
-                </div>
-                <p></p>
                 <div class="buttons">
                     <a href="https://portfolio-site-profitability.streamlit.app/" target="_blank">Live Dashboard</a>
+                    <p></p>
+                    <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/001-CustomerAnalysis" target="_blank">View on GitHub</a>   
                 </div>
-
             </div>
+
             <!-- CLV Analysis -->
             <div class="project">
                 <div class="icon-container">
@@ -196,13 +183,13 @@
                     <span class="tag">Python</span>
                 </div>
                 <div class="buttons">
+                    <a href="https://portfolio-site-clv.streamlit.app/" target="_blank">Live Dashboard</a>
+                    <p></p>
                     <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/001-CustomerAnalysis" target="_blank">View on GitHub</a>
                 </div>
-                <p></p>
-                <div class="buttons">
-                    <a href="https://portfolio-site-clv.streamlit.app/" target="_blank">Live Dashboard</a>
-                </div>
+
             </div>
+
             <!-- customer segmentation -->
             <div class="project">
                 <div class="icon-container">
@@ -216,14 +203,33 @@
                     <span class="tag">streamlit</span>
                 </div>
                 <div class="buttons">
-                    <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/002-CustomerSegmentation" target="_blank">View on GitHub</a>
-                </div>
-                <p></p>
-                <div class="buttons">
                     <a href="https://portfolio-site-segmentation.streamlit.app/" target="_blank">Live Dashboard</a>
+                    <p></p>
+                    <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/002-CustomerSegmentation" target="_blank">View on GitHub</a>
+                    
                 </div>
             </div>
 
+            <!-- customer Churn -->
+            <div class="project">
+                <div class="icon-container">
+                <img src="projects/004-ChurnAnalysis/images/churn.png" alt="customer churn" class="responsive-icon">
+                </div>
+                <h2>Customer Churn Prediction</h2>
+                <p>ML-driven dashboard for predicting customer churn, analyzing transaction frequency, recency, and trends. Provides actionable insights to identify at-risk customers and optimize retention strategies.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">streamlit</span>
+                </div>
+                <div class="buttons">
+                    <a href="https://portfolio-site-churnprediction.streamlit.app/" target="_blank">Live Dashboard</a>
+                    <p></p>
+                    <a href="https://github.com/OchiengFess/Portfolio-Site/tree/main/projects/004-ChurnAnalysis" target="_blank">View on GitHub</a>
+                    
+                    
+                </div>
+            </div>
         </div>
     </main>
 </body>

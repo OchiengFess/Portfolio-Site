@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Festus Ochieng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #003366;
+            --white: #ffffff;
+            --gray: #f4f4f9;
+            --overlay-color: rgba(255, 255, 255, 0.8);
+            --gradient-bg: linear-gradient(135deg, #4A90E2, #003366);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: var(--gradient-bg);
+            color: var(--dark-blue);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 25%;
+            background: linear-gradient(135deg, #2C2C2C, #1A1A1A);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: fixed;
+            height: 100%;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 2rem;
+        }
+
+        .sidebar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--primary-blue);
+        }
+
+        .sidebar h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+
+        .sidebar .skills, .sidebar .contact {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .sidebar h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: var(--primary-blue);
+            margin-top: 5px;
+        }
+
+        .sidebar .skills .skill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.3rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .sidebar .skill:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-blue);
+        }
+
+        .sidebar a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 25%;
+            padding: 2rem;
+            width: 75%;
+            backdrop-filter: blur(10px);
+            background: var(--overlay-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .section ul {
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .section ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--dark-blue);
+        }
+        .buttons a {
+            
+            display: inline-block;
+            text-decoration: none;
+            color: var(--white);
+            background-color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background-color: var(--dark-blue);
+        }
+        header h3 {
+            /*display: flex; */
+            text-align: right;
+            justify-content: space-between;
+            align-items: right;
+            width: 100%; 
+            margin: 0;
+        }
+        .button-container {
+        display: flex;
+        justify-content: flex-end; /* Aligns content to the right */
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="images/avatar.png" alt="Profile Picture">
+            <h1>Festus Ochieng</h1>
+            <p><strong>Co-Founder | Luminix Data & Swift Traq</strong></p>
+            <p>Data Scientist with a passion for analytics and innovation.</p>
+        </div>
+        <div class="skills">
+            <h2><i class="fas fa-tools"></i> Skills</h2>
+            <div>
+                <span class="skill">Data Visualization</span>
+                <span class="skill">Power BI</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Python</span>
+                <span class="skill">Machine Learning</span>
+            </div>
+        </div>
+        <div class="contact">
+            <h2><i class="fas fa-address-book"></i> Contact</h2>
+            <p>Email: <a href="mailto:buenevistaonline18@gmail.com">sendMail</a></p>
+            <p>Phone: +254-XX-XXX-XXX</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/festus-ochieng-045121211/" target="_blank">linkedin.com/in/festus-ochieng</a></p>
+            <p>GitHub: <a href="https://github.com/OchiengFess/" target="_blank">github.com/OchiengFess</a></p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">
+            <h1>Resume</h1>
+            <p>Explore my career and achievements</p>
+            <div class="button-container">
+            <div class='buttons'><a href="index.html" >Home</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Professional Experience🛠️</h2>
+
+            <h3>Swift Traq</h3>
+            <p><strong>Co-Founder & Data Scientist (2024 - Present)</strong></p>
+            <ul>
+                <li>Spearheaded projects, including Customer Lifetime Value Prediction and Profitability Analysis.</li>
+                <li>Developed dashboards and reports using Power BI and Python for key stakeholders.</li>
+            </ul>
+
+            <h3>Luminix Data</h3>
+            <p><strong>Co-Founder & Data Analyst (2023 - Present)</strong></p>
+            <ul>
+                <li>Led analytics projects for the hospitality industry, providing actionable insights to enhance sales and operations.</li>
+                <li>Developed dashboards and reports using Power BI and Python for key stakeholders.</li>
+            </ul>
+        </div>
+
+        <!-- More Sections -->
+        <div class="section">
+            <h2>Projects💼</h2>
+
+            <!-----------profitability---->
+            <h3>Profitablity Analysis</h3>
+            <p> Engineered a dynamic, interactive dashboard to uncover actionable insights into business profitability. Harnessed multi-source data integration to deliver real-time metrics, including total revenue, profit margins, and order trends. Key features encompassed</p>
+            <ul>
+                <li><strong>Regional profitability analysis</strong> to identify high-performing markets. </li>
+                <li><strong>Monthly revenue visualization</strong> for tracking performance trends.</li>
+                <li><strong>Top product performance insights</strong> to drive strategic decision-making.</li>
+            </ul>
+
+
+            <!-----------customer segmentation---->
+            <h3>Customer Segmentation and Analysis</h3>
+            <p> Designed and deployed a cutting-edge customer segmentation dashboard, leveraging demographic, transactional, and behavioral data. Applied clustering algorithms to create actionable customer profiles, leading to enhanced targeting and retention strategies. Highlights included:</p>
+            <ul>
+                <li>Intuitive visualizations of customer distribution by segment. </li>
+                <li>Segmentation-based KPIs for personalized marketing efforts.</li>
+                <li>Actionable insights tailored for service differentiation.
+                    The tool equipped decision-makers with a robust framework to improve customer engagement and lifetime value.</li>
+            </ul>
+
+            <!-----------CLV---->
+            <h3>Customer Lifetime Value (CLV) Dashboard</h3>
+            <p> Developed an interactive stakeholder dashboard to evaluate and predict customer lifetime value, 
+                integrating sales and geographic datasets for holistic analysis. Delivered insights through:</p>
+            <ul>
+                <li>Metrics such as average order value, lifetime revenue, and retention trends. </li>
+                <li><strong>Region-specific revenue contributions</strong> to identify growth opportunities.</li>
+                <li><strong>Lifetime distribution analysis</strong> and <strong>top customer profiling</strong> to prioritize key accounts.
+                    This solution transformed raw data into strategic insights, enabling precise revenue maximization and informed decision-making.</li>
+            </ul>
+
+            <h3>Customer Churn Prediction Dashboard</h3>
+            <p>Built an ML-powered dashboard to predict customer churn using transaction history, engagement metrics, and behavioral trends. Delivered insights through:</p>
+            <ul>
+                <li><strong>Predictive modeling</strong> to assess churn probability and identify at-risk customers.</li>
+                <li><strong>Recency, frequency, and transaction analysis</strong> for actionable retention strategies.</li>
+                <li><strong>Batch & manual churn predictions</strong> with dynamic visualizations for business intelligence.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Education🎓</h2>
+
+            <h3>WorldQuant University</h3>
+            <p><strong>Applied Data Science Lab (2025 - )</strong></p>
+            <h3>University of Eldoret</h3>
+            <p><strong>Bsc. Computer Science (2013 - 2017)</strong></p>
+        </div>
+
+        <div class="section">
+            <h2>Certifications⚙️</h2>
+            <ul>
+                <li><strong>Udemy:</strong> Python for Machine Learning & Data Science</li>
+                <li><strong>Udemy:</strong> Advanced DAX for Microsoft Power BI Desktop</li>
+                <li><strong>Udemy:</strong> Tableau Bootcamp for Data Visualization</li>
+                <li><strong>Codebasics:</strong> Power BI Analytics for All Levels Institution</li>
+                <li><strong>Coursera:</strong> Google Data Analytics</li>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
+</html>
