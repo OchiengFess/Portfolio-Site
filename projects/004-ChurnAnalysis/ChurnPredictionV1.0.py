@@ -47,8 +47,8 @@ with tabs[0]:
 
     st.write(df_train.head())
 
-    fig1 = px.histogram(df_train, x='Recency', title="Recency Distribution", nbins=30, color_discrete_sequence=['#4CAF50'])
-    fig2 = px.histogram(df_train, x='Frequency', title="Frequency Distribution", nbins=30, color_discrete_sequence=['#FF9800'])
+    fig1 = px.histogram(df_train, x='Recency', title="Recency Distribution: Days Since Last Purchase", nbins=30, color_discrete_sequence=['#4CAF50'])
+    fig2 = px.histogram(df_train, x='Frequency', title="Frequency Distribution: No. of Transactions Per Customer", nbins=30, color_discrete_sequence=['#FF9800'])
     
     st.plotly_chart(fig1, use_container_width=True)
     st.plotly_chart(fig2, use_container_width=True)
