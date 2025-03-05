@@ -7,10 +7,24 @@ import os
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
+from PIL import Image
+import requests
+from io import BytesIO
+
 # Streamlit UI
 st.set_page_config(page_title="Customer Segmentation & Churn Dashboard", layout='centered',initial_sidebar_state='expanded')
 
-st.image(("https://raw.githubusercontent.com/OchiengFess/Portfolio-Site/main/projects/005-SegChurn/Segmentation_Thumbnail.png"), use_container_width=True)
+#st.image(("https://raw.githubusercontent.com/OchiengFess/Portfolio-Site/main/projects/005-SegChurn/Segmentation_Thumbnail.png"), use_container_width=True)
+url = "https://raw.githubusercontent.com/OchiengFess/Portfolio-Site/main/projects/005-SegChurn/Segmentation_Thumbnail2.png"
+response = requests.get(url)
+img = Image.open(BytesIO(response.content))
+
+# Define desired height while keeping full width
+
+
+img = img.resize((img.width, 700), Image.Resampling.HAMMING)
+
+st.image(img)
 # Dark theme settings
 
 
@@ -62,8 +76,8 @@ except Exception as e:
     st.error(f"Model loading failed: {e}")
     best_model = None
 
-st.title("📊 Customer Segmentation & Churn Analysis")
-
+#st.title("📊 Customer Segmentation & Churn Analysis")
+st.markdown("### 📊 Customer Segmentation & Churn Analysis")
 # Sidebar Filters
 with st.sidebar:
     st.header("🔍 Filters & Summary")
