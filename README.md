@@ -1,2 +1,2 @@
 # Portfolio-Site
-![Streamlit App](https://raw.githubusercontent.com/your-username/your-repo/main/thumbnail.png)
+![Streamlit App](https://raw.githubusercontent.com/OchiengFess/Portfolio-Site/main/thumbnail.jpg)
