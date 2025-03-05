@@ -121,10 +121,10 @@ with tabs[1]:
 
 with tabs[2]:
     st.markdown("#### Predict Customer Churn")
-    recency = st.number_input("Recency (Days)", min_value=0, max_value=1000, value=rfm['Recency'].median().astype(int))
-    frequency = st.number_input("Frequency", min_value=1, max_value=1000, value=rfm['Frequency'].mean().astype(int))
-    monetary = st.number_input("Monetary", min_value=1, max_value=50000, value=rfm['Monetary'].mean().astype(int))
-    tenure = st.number_input("Tenure (Days)", min_value=0, max_value=1000, value=90)
+    recency = st.number_input("Recency (Days since last purchase)", min_value=0, max_value=1000, value=rfm['Recency'].median().astype(int))
+    frequency = st.number_input("Frequency (Number of purchases)", min_value=1, max_value=1000, value=rfm['Frequency'].mean().astype(int))
+    monetary = st.number_input("Monetary (Total Spend)", min_value=1, max_value=50000, value=rfm['Monetary'].mean().astype(int))
+    tenure = st.number_input("Tenure (Days since First Purchase)", min_value=0, max_value=1000, value=90)
 
     if st.button("Predict Churn") and best_model:
         input_data = np.array([[recency, frequency, monetary, tenure]])
