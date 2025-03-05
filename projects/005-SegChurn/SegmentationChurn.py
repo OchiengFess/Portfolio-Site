@@ -22,7 +22,7 @@ img = Image.open(BytesIO(response.content))
 # Define desired height while keeping full width
 
 
-img = img.resize((img.width, 700), Image.Resampling.HAMMING)
+img = img.resize((img.width, 750), Image.Resampling.HAMMING)
 
 st.image(img)
 # Dark theme settings
