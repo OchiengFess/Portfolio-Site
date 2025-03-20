@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 from PIL import Image
 import requests
 from io import BytesIO
-
+from PIL import Image
 # Streamlit UI
 st.set_page_config(page_title="Customer Segmentation & Churn Dashboard", layout='centered',initial_sidebar_state='expanded')
 

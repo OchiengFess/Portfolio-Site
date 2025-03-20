@@ -1,0 +1,134 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+from datetime import datetime
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from yellowbrick.cluster import KElbowVisualizer
+import streamlit as st
+
+# Load Dataset
+df = pd.read_csv("ecommerce_data.csv", encoding='ISO-8859-1')
+
+# Data Preprocessing
+df.dropna(subset=['CustomerID'], inplace=True)
+df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+df['TotalPrice'] = df['Quantity'] * df['UnitPrice']
+df = df[df['Quantity'] > 0]
+df = df[df['UnitPrice'] > 0]
+
+# Streamlit UI Customization
+st.set_page_config(layout="wide", page_title="E-commerce Insights Dashboard", page_icon="📊", initial_sidebar_state="expanded")
+st.markdown("""
+    <style>
+    .main {background-color: #0a192f; color: #ffffff;}
+    .stTabs {font-size: 18px;}
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("📊 E-commerce Customer Insights Dashboard")
+
+# Sidebar - Filtering Options
+time_period = st.sidebar.selectbox("Select Cohort Period:", ["Monthly", "Weekly", "Quarterly"])
+date_range = st.sidebar.date_input("Select Date Range:", [df['InvoiceDate'].min(), df['InvoiceDate'].max()])
+category_filter = st.sidebar.multiselect("Filter by Product Category:", df['Description'].unique())
+region_filter = st.sidebar.multiselect("Filter by Country:", df['Country'].unique())
+
+# Apply Filters
+df_filtered = df[(df['InvoiceDate'] >= date_range[0]) & (df['InvoiceDate'] <= date_range[1])]
+if category_filter:
+    df_filtered = df_filtered[df_filtered['Description'].isin(category_filter)]
+if region_filter:
+    df_filtered = df_filtered[df_filtered['Country'].isin(region_filter)]
+
+# Tabs for better organization
+tabs = st.tabs(["Overview", "Cohort Analysis", "RFM Segmentation", "Geography", "Advanced Insights"])
+
+# Overview Tab
+with tabs[0]:
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        df_filtered['Month'] = df_filtered['InvoiceDate'].dt.to_period('M')
+        monthly_revenue = df_filtered.groupby('Month')['TotalPrice'].sum()
+        st.subheader("📈 Monthly Revenue Trends")
+        fig = px.line(monthly_revenue, title="Revenue Over Time", markers=True)
+        st.plotly_chart(fig)
+    
+    with col2:
+        top_products = df_filtered.groupby('Description')['Quantity'].sum().sort_values(ascending=False).head(10)
+        st.subheader("🏆 Top 10 Best Selling Products")
+        fig = px.bar(top_products, orientation='h', title="Best Selling Products")
+        st.plotly_chart(fig)
+
+# Cohort Analysis Tab
+with tabs[1]:
+    df_filtered['CohortMonth'] = df_filtered.groupby('CustomerID')['InvoiceDate'].transform('min').dt.to_period('M')
+    df_filtered['OrderMonth'] = df_filtered['InvoiceDate'].dt.to_period('M')
+    df_filtered['CohortIndex'] = (df_filtered['OrderMonth'] - df_filtered['CohortMonth']).apply(lambda x: x.n)
+    
+    cohort_data = df_filtered.groupby(['CohortMonth', 'CohortIndex']).agg(n_customers=('CustomerID', 'nunique')).reset_index()
+    cohort_pivot = cohort_data.pivot(index='CohortMonth', columns='CohortIndex', values='n_customers').fillna(0)
+    cohort_pivot = cohort_pivot.divide(cohort_pivot.iloc[:, 0], axis=0)
+    
+    st.subheader("📊 Customer Retention Cohort Heatmap")
+    fig, ax = plt.subplots()
+    sns.heatmap(cohort_pivot, annot=True, fmt='.0%', cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
+    
+    # Customer Lifecycle Heatmap
+    revenue_cohort = df_filtered.groupby(['CohortMonth', 'CohortIndex']).agg(Revenue=('TotalPrice', 'sum')).reset_index()
+    revenue_pivot = revenue_cohort.pivot(index='CohortMonth', columns='CohortIndex', values='Revenue').fillna(0)
+    
+    st.subheader("💰 Customer Lifecycle Heatmap (Revenue per Cohort)")
+    fig, ax = plt.subplots()
+    sns.heatmap(revenue_pivot, annot=True, fmt='.0f', cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
+
+# RFM Segmentation Tab
+with tabs[2]:
+    snapshot_date = df_filtered['InvoiceDate'].max() + pd.DateOffset(1)
+    rfm = df_filtered.groupby('CustomerID').agg({
+        'InvoiceDate': lambda x: (snapshot_date - x.max()).days,
+        'InvoiceNo': 'count',
+        'TotalPrice': 'sum'
+    }).rename(columns={'InvoiceDate': 'Recency', 'InvoiceNo': 'Frequency', 'TotalPrice': 'Monetary'})
+    
+    scaler = StandardScaler()
+    rfm_scaled = scaler.fit_transform(rfm)
+    
+    model = KMeans(random_state=42)
+    visualizer = KElbowVisualizer(model, k=(2, 10))
+    visualizer.fit(rfm_scaled)
+    optimal_k = visualizer.elbow_value_
+    
+    kmeans = KMeans(n_clusters=optimal_k, random_state=42)
+    rfm['Cluster'] = kmeans.fit_predict(rfm_scaled)
+    
+    st.subheader("🎯 Customer Segmentation (RFM Analysis)")
+    cluster_option = st.slider("Select Number of Clusters", min_value=2, max_value=10, value=optimal_k)
+    kmeans = KMeans(n_clusters=cluster_option, random_state=42)
+    rfm['Cluster'] = kmeans.fit_predict(rfm_scaled)
+    
+    fig = px.scatter(rfm, x="Recency", y="Monetary", color="Cluster", title="RFM Segmentation")
+    st.plotly_chart(fig)
+
+# Geography Tab
+with tabs[3]:
+    st.subheader("🌍 Sales Distribution by Country")
+    country_sales = df_filtered.groupby("Country")["TotalPrice"].sum().reset_index()
+    fig = px.choropleth(country_sales, locations="Country", locationmode="country names", color="TotalPrice", title="Sales by Country")
+    st.plotly_chart(fig)
+
+# Advanced Insight
+with tabs[4]:
+    st.subheader("📊 Sales by Hour of the Day")
+    df_filtered['Hour'] = df_filtered['InvoiceDate'].dt.hour
+    hourly_sales = df_filtered.groupby('Hour')['TotalPrice'].sum()
+    fig = px.bar(hourly_sales, title='Sales Trend by Hour')
+    st.plotly_chart(fig)
+
+# Footer
+st.markdown("<hr><center>© 2025 E-commerce Insights Dashboard</center>", unsafe_allow_html=True)
