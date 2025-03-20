@@ -200,4 +200,8 @@ with st.spinner("Loading Dashboard..."):
             st.plotly_chart(fig)
 
     # Footer
-    st.markdown("<hr><center>© 2025 E-commerce Dashboard | DS/DA Ochieng Festus</center>", unsafe_allow_html=True)
+    st.markdown("<hr>"
+                "<center><em>DS/DA Ochieng Fess</em></center>"
+                
+                "<center>© 2025 E-commerce Dashboard "
+                "</center>", unsafe_allow_html=True)
