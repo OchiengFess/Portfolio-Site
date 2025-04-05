@@ -75,13 +75,11 @@ full_data = order_details.merge(orders, on='order_id', how='left')
 full_data['total_price'] = full_data['quantity'] * full_data['price']
 
 
-
 # Streamlit UI
 st.title("🍕Pizza Sales Analytics")
 
-# filters
 
-# Metrics Overview & filters
+# filters
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown('##### 📅 Filter by Date Range')
@@ -96,6 +94,25 @@ if len(date_range) !=2:
 else:
     start_date, end_date = date_range
     filtered_data = full_data[(full_data['date'] >= pd.to_datetime(start_date)) & (full_data['date'] <= pd.to_datetime(end_date))]
+    filtered_dataCopy = filtered_data.copy()
+
+# Category Level Drill down
+with col2:
+    category_options = ['All'] + list(full_data['category'].unique())
+    selected_category = st.selectbox("🍕 Filter Top Pizzas by Category", category_options)
+
+if selected_category != 'All':
+    filtered_data = filtered_data[filtered_data['category'] == selected_category]
+else:
+    filtered_data = filtered_dataCopy
+
+with col3:
+    weekday_options = ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    selected_weekday = st.selectbox("Choose Weekday",weekday_options)
+if selected_weekday != 'All':
+    filtered_data = filtered_data[pd.to_datetime(filtered_data['date']).dt.day_name() == selected_weekday]
+else:
+    filtered_data = filtered_dataCopy
 
 # total revenue --filtered data
 total_revenue = filtered_data['total_price'].sum()
@@ -103,9 +120,14 @@ total_revenue = filtered_data['total_price'].sum()
 # Compute total number of  orders -- filtered data
 total_orders = filtered_data['order_id'].nunique()
 
-col2.metric("Total Revenue", f"${total_revenue:,.2f}")
-col3.metric("Total Orders", f"{total_orders:,}")
+# Average order value
+avg_order_value = total_revenue / total_orders if total_orders != 0 else 0
 
+# Metrics
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Revenue", f"${total_revenue:,.2f}")
+col2.metric("Total Orders", f"{total_orders:,}")
+col3.metric("Avg Order Value", f"{avg_order_value:.2f}")
 
 # category-Wise Sales Analysis
 category_sales = filtered_data.groupby('category')['total_price'].sum().reset_index().sort_values(by='total_price', ascending=False)
@@ -114,10 +136,6 @@ fig_category = px.bar(category_sales, x='total_price', y='category',
                       color_continuous_scale=['#ffcccc', '#960018'],
                       labels={'total_price': 'total revenue', 'category': ''})
 fig_category.update_coloraxes(showscale=False)
-
-
-#st.markdown('##### Sales by Category')
-#st.plotly_chart(fig_category, use_container_width=True)
 
 # Top selling Pizzas
 top_pizzas = filtered_data.groupby('name')['total_price'].sum().reset_index().sort_values(by='total_price', ascending=False).head(10)
@@ -209,7 +227,7 @@ fig_segment = px.scatter(customer_data, x=customer_data.index,
 
 
 # Layout 3 column top-down story telling
-st.markdown('### 🔍 Sales Insights')
+#st.markdown('### 🔍 Sales Insights')
 
 c1, c2, c3 = st.columns(3)
 
