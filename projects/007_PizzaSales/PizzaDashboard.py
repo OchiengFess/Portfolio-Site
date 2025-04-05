@@ -5,7 +5,7 @@ import plotly.express as px
 import streamlit as st
 from sklearn.cluster import KMeans
 from collections import Counter
-from mlxtend.frequent_patterns import apriori, association_rules
+#from mlxtend.frequent_patterns import apriori, association_rules
 from PIL import Image
 import os
 
