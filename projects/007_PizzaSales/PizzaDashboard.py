@@ -90,11 +90,11 @@ with col1:
 # filter by date
 if len(date_range) !=2:
     st.warning("Please select valid start & end date")
-    filtered_data = full_data
+    filtered_data = full_data.copy()
 else:
     start_date, end_date = date_range
     filtered_data = full_data[(full_data['date'] >= pd.to_datetime(start_date)) & (full_data['date'] <= pd.to_datetime(end_date))]
-    filtered_dataCopy = filtered_data.copy()
+    #filtered_dataCopy = filtered_data.copy()
 
 # Category Level Drill down
 with col2:
@@ -103,16 +103,13 @@ with col2:
 
 if selected_category != 'All':
     filtered_data = filtered_data[filtered_data['category'] == selected_category]
-else:
-    filtered_data = filtered_dataCopy
+
 
 with col3:
     weekday_options = ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     selected_weekday = st.selectbox("Choose Weekday",weekday_options)
 if selected_weekday != 'All':
     filtered_data = filtered_data[pd.to_datetime(filtered_data['date']).dt.day_name() == selected_weekday]
-else:
-    filtered_data = filtered_dataCopy
 
 # total revenue --filtered data
 total_revenue = filtered_data['total_price'].sum()
