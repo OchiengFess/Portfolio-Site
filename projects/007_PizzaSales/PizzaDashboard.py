@@ -98,7 +98,7 @@ else:
 
 # Category Level Drill down
 with col2:
-    category_options = ['All'] + list(full_data['category'].unique())
+    category_options = ['All'] + list(full_data['category'].dropna().unique())
     selected_category = st.selectbox("🍕 Filter Top Pizzas by Category", category_options)
 
 if selected_category != 'All':
